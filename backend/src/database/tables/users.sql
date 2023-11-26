@@ -4,7 +4,6 @@ CREATE TABLE users (
     email varchar(250) NOT NULL,
     role varchar(100) DEFAULT 'customer',
     password varchar(250) NOT NULL,
-
 )
 
 select * from users

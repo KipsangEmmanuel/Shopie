@@ -47,3 +47,23 @@ export const fetchProducts = async(req:Request, res:Response) => {
         
     }
 }
+
+export const fetchOneProduct = async(req: Request, res:Response) => {
+    try {
+        let {product_id} = req.params
+
+        const pool = await mssql.connect(sqlConfig)
+
+        const product = (await pool.request().input('product_id', product_id).execute('getSingleProduct'))
+
+        return res.json({
+            product: product
+        })
+        
+    } catch (error) {
+        return res.json({
+            error: error
+        })
+        
+    }
+}
