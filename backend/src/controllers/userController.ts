@@ -6,6 +6,7 @@ import { v4 } from "uuid";
 import { request, Request, response, Response } from "express";
 import { validateLoginUser, validateRegisterUser, validateUserId } from "../validators/userValidator";
 import Connection from "../services/dbConnect";
+import { user } from "../types/interface";
 
 const dbhelpers = new Connection
 
@@ -13,7 +14,7 @@ const dbhelpers = new Connection
 export const registerUser = async (req: Request, res: Response) => {
   try {
     let { username, email, password } = req.body;
-
+    let _id=v4()
     let { error } = validateRegisterUser.validate(req.body);
 
     if (error) {
@@ -29,7 +30,7 @@ export const registerUser = async (req: Request, res: Response) => {
 
     let result = await pool
       .request()
-      .input("id", mssql.VarChar, v4())
+      .input("_id", mssql.VarChar, _id)
       .input("username", mssql.VarChar, username)
       .input("email", mssql.VarChar, email)
       .input("password", mssql.VarChar, hashedPwd)
@@ -114,6 +115,8 @@ export const deleteUser=async(req:Request,res:Response)=>{
   try{
       const {_id}=req.params
 
+      console.log(_id);
+      
       const deleteUser=await dbhelpers.execute('deleteUser',{_id})
 
       return res.json({

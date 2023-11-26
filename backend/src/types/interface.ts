@@ -1,5 +1,5 @@
 export interface updateUser {
-    id: string;
+    _id: string;
     username: string;
     email: string;
   }
@@ -19,4 +19,11 @@ export interface checkDetailsUser {
   username: string;
   email: string;
   role:string
+}
+export interface Products {
+  product_id: string;
+  product_name: string;
+  description: string;
+  price: number;
+  image?: string;
 }
