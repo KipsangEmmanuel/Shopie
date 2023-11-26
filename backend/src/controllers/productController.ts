@@ -28,3 +28,22 @@ export const createProduct = async (req: Request, res: Response) => {
         
     }
 }
+
+export const fetchProducts = async(req:Request, res:Response) => {
+    try {
+
+        const pool = await mssql.connect(sqlConfig)
+
+        const products = (await pool.request().execute('fetchAllProducts')).recordset
+
+        return res.status(200).json({
+            products: products
+        })
+        
+    } catch (error) {
+        return res.json({
+            error: error
+        })
+        
+    }
+}

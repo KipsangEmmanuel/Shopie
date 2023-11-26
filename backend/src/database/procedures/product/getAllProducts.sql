@@ -1,0 +1,5 @@
+CREATE OR ALTER PROCEDURE fetchAllProducts
+AS
+BEGIN
+    SELECT * FROM Products
+END
