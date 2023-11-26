@@ -1,0 +1,6 @@
+CREATE OR ALTER PROCEDURE deleteUser(@_id VARCHAR(200))
+AS
+
+BEGIN
+    DELETE FROM users WHERE _id=@_id
+END

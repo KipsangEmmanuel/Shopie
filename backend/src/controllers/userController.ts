@@ -4,7 +4,11 @@ import jwt from "jsonwebtoken";
 import { sqlConfig } from "../config/sqlConfig";
 import { v4 } from "uuid";
 import { request, Request, response, Response } from "express";
-import { validateLoginUser, validateRegisterUser } from "../validators/userValidator";
+import { validateLoginUser, validateRegisterUser, validateUserId } from "../validators/userValidator";
+import Connection from "../services/dbConnect";
+
+const dbhelpers = new Connection
+
 
 export const registerUser = async (req: Request, res: Response) => {
   try {
@@ -105,3 +109,19 @@ export const checkUserDetails = async (request: any, res: Response) => {
     })
   }
 };
+
+export const deleteUser=async(req:Request,res:Response)=>{
+  try{
+      const {_id}=req.params
+
+      const deleteUser=await dbhelpers.execute('deleteUser',{_id})
+
+      return res.json({
+          message:'User deleted successfully'
+      })
+  }catch(error){
+      return res.json({
+          error:error
+      })
+  }
+}
