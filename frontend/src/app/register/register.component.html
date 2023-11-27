@@ -1,1 +1,27 @@
-<p>register works!</p>
+
+<body>
+    <app-navbar></app-navbar>
+    <div class="wrapper">
+      <form [formGroup]="registerUser" data-cy="register-form" (ngSubmit)="createUser()">
+        <h2>Register</h2>
+        <div class="input-field">
+            <input type="text" formControlName="username" required>
+            <label class="input">Enter your Name</label>
+          </div>
+        <div class="input-field">
+          <input type="text" formControlName="email" required>
+          <label class="input">Enter your email</label>
+        </div>
+        <div class="input-field">
+          <input type="password" formControlName="password" required>
+          <label class="input">Enter your password</label>
+        </div>
+        <button type="submit">Register</button>
+        <div class="register">
+          <p>Aready have an Account?<a routerLink="/login">Login</a></p>
+        </div>
+      </form>
+    </div>
+    
+  </body>
+  <app-footer></app-footer>
