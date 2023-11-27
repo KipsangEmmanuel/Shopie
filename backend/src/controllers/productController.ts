@@ -67,3 +67,27 @@ export const fetchOneProduct = async(req: Request, res:Response) => {
         
     }
 }
+
+export const deleteProduct = async(req:Request, res:Response)=>{
+    try {
+        let {product_id} = req.params
+        console.log('Deleting product with ID:', product_id);
+
+        const pool = await mssql.connect(sqlConfig)
+        const product = (await pool.request().input('product_id', product_id).execute('deleteProduct')).rowsAffected
+
+        if((product[0]) == 1) {
+            return res.status(200).json({
+                message: "Product deleted successfully"
+            })
+        }else{
+            return res.status(400).json({
+                error: "No product with the given Id"
+            })        }
+        
+    } catch (error) {
+        res.json({
+            error: "Server not running"
+        })
+    }
+}
