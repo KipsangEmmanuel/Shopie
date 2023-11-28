@@ -1,1 +1,31 @@
-<p>login works!</p>
+
+
+<div class="parent-wrapper">
+  <app-navbar></app-navbar>
+  <div class="wrapper">
+    <form data-cy="login-form" (ngSubmit)="onSubmit()" #loginform="ngForm">
+      <h2>Login</h2>
+      <div class="input-field">
+        <input data-cy="email" type="text" [(ngModel)]="userData.email" name="email" required>
+        <label>Enter your email</label>
+      </div>
+      <div class="input-field">
+        <input data-cy="password" type="password" [(ngModel)]="userData.password" name="password" required>
+        <label>Enter your password</label>
+      </div>
+      <div class="forget">
+        <label for="remember">
+          <input type="checkbox" id="remember">
+          <p>Remember me</p>
+        </label>
+        <a href="#">Forgot password?</a>
+      </div>
+      <button data-cy="login-btn" type="submit">Log In</button>
+      <div class="register">
+        <p>Don't have an account? <a href="/register">Register</a></p>
+      </div>
+    </form>
+  </div>
+  
+</div>
+<app-footer></app-footer>
