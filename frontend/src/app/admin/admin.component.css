@@ -205,5 +205,5 @@ button:hover {
 
 #togglePopup:checked + .crud-popup {
     display: flex;
-    background-color: black;
+    /* background-color: black; */
 }
