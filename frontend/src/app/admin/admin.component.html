@@ -1,43 +1,56 @@
-
 <body>
 
-<section class="adm">
-    <app-navbar></app-navbar>
-    
-    <div class="text-box">
-                <h1 class="mb-4"><i>Good <span>Drinks</span> For Good <span>Moments</span></i></h1>
-
+    <section class="adm">
+      <app-navbar></app-navbar>
+  
+      <div class="text-box">
+        <h1 class="mb-4"><i>Good <span>Drinks</span> For Good <span>Moments</span></i></h1>
+  
         <button>
-            <label for="togglePopup" class="createProductBtn">Create Product</label>
+          <label for="togglePopup" class="createProductBtn">Create Product</label>
         </button>
-    </div>
-</section>
-
-<input type="checkbox" id="togglePopup">
-<div class="crud-popup">
-    <div class="crud-container">
+      </div>
+    </section>
+  
+    <!-- Product Cards Section -->
+    <section *ngIf="productList.length > 0" class="product-cards">
+      <div *ngFor="let product of productList" class="product-card">
+        <div class="img">
+          <img [src]="product.image" alt="Product Image">
+        </div>
+        <div class="content">
+          <div class="title">{{ product.product_name }}</div>
+          <div class="sub-title">Price: ${{ product.price }}</div>
+          <p>{{ product.description }}</p>
+        </div>
+      </div>
+    </section>
+  
+    <!-- Product Form Popup -->
+    <input type="checkbox" id="togglePopup">
+    <div class="crud-popup">
+      <div class="crud-container">
         <label for="togglePopup" class="close">&times;</label>
         <form [formGroup]="productForm" (ngSubmit)="createProduct()" id="productForm">
-           
-            <label for="productName">Product Name:</label>
-            <input type="text" formControlName="product_name" name="productName" placeholder="Product Name" required>
-
-            <label for="productDescription">Product Description:</label>
-            <textarea formControlName="description" name="productDescription" placeholder="Product Description" rows="4" required></textarea>
-
-            <label for="productPrice">Product Price:</label>
-            <input type="number" formControlName="price" name="productPrice" placeholder="Product price" required>
-
-            <label for="productImage">Product Image:</label>
-            <input type="text" formControlName="image" name="productImage" placeholder="Product Image" required>
-
-            
-            <button type="submit">Save Product</button>
+  
+          <label for="productName">Product Name:</label>
+          <input type="text" formControlName="product_name" name="productName" placeholder="Product Name" required>
+  
+          <label for="productDescription">Product Description:</label>
+          <textarea formControlName="description" name="productDescription" placeholder="Product Description" rows="4" required></textarea>
+  
+          <label for="productPrice">Product Price:</label>
+          <input type="number" formControlName="price" name="productPrice" placeholder="Product price" required>
+  
+          <label for="productImage">Product Image:</label>
+          <input type="text" formControlName="image" name="productImage" placeholder="Product Image" required>
+  
+          <button type="submit">Save Product</button>
         </form>
+      </div>
     </div>
-</div>
-
-<app-footer></app-footer>
-
-</body>
-
+  
+    <app-footer></app-footer>
+  
+  </body>
+  

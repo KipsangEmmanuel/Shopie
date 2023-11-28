@@ -9,15 +9,14 @@ import { ProductService } from '../services/product.service';
 })
 export class AdminComponent {
   productForm: FormGroup;
+  productList: any[] = [];
 
   constructor(private fb: FormBuilder, private productService: ProductService) {
-    
     this.productForm = this.fb.group({
       product_name: ['', Validators.required],
       description: ['', Validators.required],
       price: ['', [Validators.required, Validators.min(0)]],
       image: ['', Validators.required]
-      
     });
   }
 
@@ -28,6 +27,7 @@ export class AdminComponent {
       this.productService.createProduct(productData).subscribe(
         (response) => {
           console.log('Product created successfully', response);
+          this.productList.push(productData);
           this.productForm.reset();
         },
         (error) => {
