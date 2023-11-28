@@ -20,6 +20,14 @@ export class AdminComponent {
     });
   }
 
+  ngOnInit() {
+    // Load products from localStorage when the component initializes
+    const storedProducts = localStorage.getItem('products');
+    if (storedProducts) {
+      this.productList = JSON.parse(storedProducts);
+    }
+  }
+
   createProduct() {
     if (this.productForm.valid) {
       const productData = this.productForm.value;
@@ -28,6 +36,9 @@ export class AdminComponent {
         (response) => {
           console.log('Product created successfully', response);
           this.productList.push(productData);
+
+          localStorage.setItem('products', JSON.stringify(this.productList));
+
           this.productForm.reset();
         },
         (error) => {
