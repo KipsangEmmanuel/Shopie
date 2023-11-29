@@ -29,6 +29,7 @@
   
   </section>
   <section class="my-cart">
+    
     <div *ngFor="let product of cart" class="cart-item">
       <div class="img">
         <img [src]="product.image" alt="Product Image">
@@ -36,7 +37,8 @@
       <div class="content">
         <div class="title">{{ product.product_name }}</div>
         <div class="sub-title">Price: ${{ product.price }}</div>
-        <!-- Add any other information you want to display in the cart -->
+        <p>{{ product.description }}</p>
+        <button class="remove-cart"  (click)="removeFromCart(product)">Remove</button>
       </div>
     </div>
   </section>

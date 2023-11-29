@@ -26,14 +26,32 @@ export class CustomerComponent {
     this.productService.productList$.subscribe((products) => {
       this.productList = products;
     });
+
+    const storedCart = localStorage.getItem('cart');
+    this.cart = storedCart ? JSON.parse(storedCart) : [];
   }
 
   addToCart(product: any) {
-    // Add the selected product to the cart array
-    this.cart.push(product);
+    
+        this.cart.push(product);
 
-    // You can update any logic related to the cart here
-    // For example, you might want to update a service that manages the cart state
-    // Or you can emit an event to notify other components about the cart update
+        this.productList = this.productList.filter((p) => p !== product);
+    
+        this.productSharedService.updateProductList([...this.productList]);
+
+        localStorage.setItem('cart', JSON.stringify(this.cart));
+
+
+  }
+
+  removeFromCart(product: any) {
+    this.cart = this.cart.filter((p) => p !== product);
+
+    this.productList.push(product);
+
+    this.productSharedService.updateProductList([...this.productList]);
+
+    localStorage.setItem('cart', JSON.stringify(this.cart));
+
   }
 }

@@ -27,7 +27,6 @@
     font-size: 70px;
 }
 
-/* Styling for product cards with a maximum of 4 cards in a row */
 .product-cards {
     max-width: 1100px;
     margin: 30px auto;
@@ -92,6 +91,11 @@
   padding: 10px;
   border-radius: 7px;
 }
+.remove-cart{
+  background-color: red;
+  padding: 8px;
+  border-radius: 7px;
+}
 
 .cart{
   background-color: #caf671;
@@ -142,11 +146,57 @@
   cursor: pointer;
 }
 
-/* Add any other styling for the modal content here */
 
-/* Style to close the modal when the close button is clicked */
 #closeBtn:target {
   display: none;
 }
+
+
+
+.my-cart {
+  max-width: 1100px;
+  margin: 30px auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.cart-item {
+  flex-basis: calc(33.33% - 20px);
+  margin: 0 10px;
+  background: #fff;
+  margin-bottom: 20px;
+  box-sizing: border-box;
+  overflow: hidden; 
+}
+
+.cart-item img {
+  height: 200px;
+  width: 100%;
+  object-fit: cover; 
+  border-bottom: 1px solid #ddd;
+}
+
+.cart-item .content {
+  padding: 10px 20px;
+}
+
+.cart-item .title {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.cart-item .sub-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #e74c3c;
+  line-height: 20px;
+}
+
+.cart-item p {
+  text-align: justify;
+  margin: 10px 0;
+}
+
 
   
