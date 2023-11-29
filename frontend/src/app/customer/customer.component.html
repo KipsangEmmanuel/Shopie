@@ -1,1 +1,35 @@
-<p>customer works!</p>
+<body>
+  <section class="ctm">
+    <app-navbar></app-navbar>
+
+    <div class="text-box">
+      <h1 class="mb-4">
+        <i>Good <span>Drinks</span> For Good <span>Moments</span></i>
+      </h1>
+      <button class="cart" (click)="goToCart()">
+        Cart
+      </button>
+    </div>
+  </section>
+  <section class="customer-products">
+    <section *ngIf="productList.length > 0" class="product-cards">
+      <div *ngFor="let product of productList" class="product-card">
+        <div class="img">
+            <img [src]="product.image" alt="Product Image">    
+          
+        </div>
+        <div class="content">
+          <div class="title">{{ product.product_name }}</div>
+          <div class="sub-title">Price: ${{ product.price }}</div>
+          <p>{{ product.description }}</p>
+          <button class="add-cart">Add to cart</button>          
+        </div>
+      </div>
+    </section>
+  
+  </section>
+
+  
+  
+  <app-footer></app-footer>
+</body>

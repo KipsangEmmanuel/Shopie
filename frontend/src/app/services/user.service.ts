@@ -14,11 +14,12 @@ export class UserService {
   async checkDetails() {
     let token = localStorage.getItem('token') as string
 
-    let res =  await fetch('', {
+    let res =  await fetch('http://localhost:8000/user/check_user_details', {
       headers: {
         "Content-type": "application/json",
         "token": token
-      }
+      },
+      method: "GET"
     })
 
     let data = await res.json()
@@ -34,6 +35,5 @@ export class UserService {
         'Content-type': 'application/json',
       }
     })
-  }
-  
+  } 
 }

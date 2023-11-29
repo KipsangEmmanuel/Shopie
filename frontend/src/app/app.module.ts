@@ -16,6 +16,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
+import { ProductSharedService } from './services/product-shared.service';
 
 @NgModule({
   declarations: [
@@ -37,9 +38,11 @@ import { HttpClientModule } from '@angular/common/http';
     FormsModule,
     RouterModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    RouterModule
+
   ],
-  providers: [],
+  providers: [ProductSharedService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

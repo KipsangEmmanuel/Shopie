@@ -18,15 +18,14 @@ export class LoginService {
     })
 
     const data = await response.json()
-    console.log(data)
+    console.log(response)
 
     let token = data.token
     
     localStorage.setItem('token', token)
     // console.log(token.username);
+    console.log(data);
     
-
-
     return data
 
   }

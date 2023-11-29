@@ -22,7 +22,7 @@
     bottom: 30%;
     transition:  translate(-50%,-50%)
 }
-button{
+.button{
     position: relative;
     height: 60px;
     width: 200px;
@@ -209,7 +209,6 @@ button:hover {
 }
 
 
- /* Add styling for the product cards */
  /* Styling for product cards with a maximum of 4 cards in a row */
 .product-cards {
     max-width: 1100px;
@@ -218,17 +217,21 @@ button:hover {
     flex-wrap: wrap;
     justify-content: space-between;
   }
+  body{
+    background-color: rgb(15, 12, 12);
+  }
   
   .product-card {
-    flex-basis: calc(25% - 20px); /* 4 cards per row with margin */
+    flex-basis: calc(25% - 20px); 
     margin: 0 10px;
     background: #fff;
-    margin-bottom: 20px; /* Add some margin between rows */
+    margin-bottom: 20px; 
+    
     box-sizing: border-box;
   }
   
   .product-card .img {
-    height: 150px; /* Adjust the height as needed */
+    height: 150px; 
     width: 100%;
   }
   
@@ -258,4 +261,14 @@ button:hover {
     text-align: justify;
     margin: 10px 0;
   }
+
+
+.action-buttons{
+    display: flex;
+    background-color: red;
+}
+.actions{
+
+}
+  
   

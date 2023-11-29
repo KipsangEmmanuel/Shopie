@@ -1,4 +1,3 @@
-// login.component.ts
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoginService } from '../services/login.service';
@@ -41,7 +40,7 @@ export class LoginComponent {
       if (response.error) {
         console.log(response.error);
         
-        this.loggingIn = true;
+        this.loggingIn = false;
         
             
         let  newMess=this.errorMessage = response.error;
@@ -66,8 +65,9 @@ export class LoginComponent {
         console.log(role);
 
         setTimeout(async () => {
-          this.successMessage = '';
+          this.successMessage = response.message;
           this.loggedInState = false;
+          this.loggedIn = true;
 
           if (role == 'admin') {
             this.router.navigate(['admin']);

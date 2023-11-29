@@ -1,0 +1,274 @@
+*{
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+}
+.adm{
+    min-height: 100vh;
+    width: 100%;
+    background-image: url("../../assets/images/bg_2.jpg");
+    background-position: center;
+    background-size: cover;
+    position: relative;
+}
+
+
+.text-box {
+    text-align: center;
+    color: white;
+    width: 90%;
+    position: absolute;
+    top: 30%;
+    bottom: 30%;
+    transition:  translate(-50%,-50%)
+}
+button{
+    position: relative;
+    height: 60px;
+    width: 200px;
+    margin: 0 35px;
+    border-radius: 50px;
+    border: none;
+    outline: none;
+    background: rgba(187, 141, 2, 0.886);
+    color: #fff;
+    font-size: 20px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background 0.5s;
+  }
+  button:first-child:hover{
+    background: linear-gradient(90deg, #03a9f4, #f441a5, #ffeb3b, #03a9f4);
+    background-size: 400%;
+  }
+  button:last-child:hover{
+    background: linear-gradient(90deg, #fa7199, #f5ce62, #e43603, #fa7199);
+    background-size: 400%;
+  }
+  button:first-child:before,
+  button:last-child:before{
+    content: '';
+    position: absolute;
+    background: inherit;
+    top: -5px;
+    right: -5px;
+    bottom: -5px;
+    left: -5px;
+    border-radius: 50px;
+    filter: blur(20px);
+    opacity: 0;
+    transition: opacity 0.5s;
+  }
+  button:first-child:hover:before,
+  button:last-child:hover:before{
+    opacity: 1;
+    z-index: -1;
+  }
+  button:hover{
+    z-index: 1;
+    animation: glow 8s linear infinite;
+  }
+  @keyframes glow {
+    0%{
+      background-position: 0%;
+    }
+    100%{
+      background-position: 400%;
+    }
+  }
+.text-box h1{
+    color: rgb(227, 242, 11);
+    font-size: 70px;
+    }
+.text-box p{
+    color: greenyellow;
+    height: 60px;
+}
+.btn {
+    border: 1px solid white;
+    color: darkorange;
+    padding: 10px 36px;
+    font-size: 35px;
+    cursor: pointer;
+    position: relative;
+    text-decoration: none;
+    border-radius: 10px;
+}
+.btn:hover{
+    border: 1px solid black;
+    /* background-color: aqua; */
+    transition: 0.5sec;
+}
+
+
+/* Styles for the modal */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 10% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 50%;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    cursor: pointer;
+}
+
+#createProductModal:target {
+    display: block;
+}
+
+.crud-popup {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+}
+
+.crud-container {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    position: relative;
+    max-width: 400px;
+    width: 100%;
+}
+
+.close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+form {
+    display: grid;
+    gap: 10px;
+}
+
+label {
+    font-weight: bold;
+}
+
+input,
+textarea {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+button {
+    background-color: #4caf50;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+#togglePopup:checked + .crud-popup {
+    display: flex;
+    /* background-color: black; */
+}
+
+
+ /* Styling for product cards with a maximum of 4 cards in a row */
+.product-cards {
+    max-width: 1100px;
+    margin: 30px auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  body{
+    background-color: rgb(15, 12, 12);
+  }
+  
+  .product-card {
+    flex-basis: calc(25% - 20px); 
+    margin: 0 10px;
+    background: #fff;
+    margin-bottom: 20px; 
+    
+    box-sizing: border-box;
+  }
+  
+  .product-card .img {
+    height: 150px; 
+    width: 100%;
+  }
+  
+  .product-card .img img {
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
+  }
+  
+  .product-card .content {
+    padding: 10px 20px;
+  }
+  
+  .product-card .content .title {
+    font-size: 18px;
+    font-weight: 600;
+  }
+  
+  .product-card .content .sub-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: #e74c3c;
+    line-height: 20px;
+  }
+  
+  .product-card .content p {
+    text-align: justify;
+    margin: 10px 0;
+  }
+
+
+.action-buttons{
+    display: flex;
+    background-color: red;
+}
+.actions{
+
+}
+  
+  
