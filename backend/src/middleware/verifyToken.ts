@@ -1,7 +1,7 @@
 import dotenv from "dotenv";
 import { NextFunction, Request, Response } from "express";
 import jwt from "jsonwebtoken";
-import { checkDetailsUser } from "../types/interface";
+import { checkDetailsUser } from "../types/userInterface";
 dotenv.config();
 
 
@@ -17,6 +17,8 @@ export const verifyToken = (
 ) => {
     try {
         const token = request.headers["token"] as string;
+        console.log(token);
+        
         if (!token) {
           return res.status(401).json({
             message: "No token provided",
@@ -26,6 +28,8 @@ export const verifyToken = (
           token,
           process.env.SECRET as string
         ) as checkDetailsUser;
+        console.log(decoded);
+        
         request.info = decoded;
         console.log(request.info);
         
@@ -35,5 +39,5 @@ export const verifyToken = (
     }
 
     next();
-
+   
 }

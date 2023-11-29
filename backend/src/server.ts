@@ -16,6 +16,7 @@ app.use(cors());
 app.use('/user', user_router)
 app.use('/product', products_router)
 
+
 app.use((error: Error, req:Request, res:Response, next:NextFunction)=>{
     res.json({
         message: error.message

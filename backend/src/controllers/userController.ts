@@ -3,24 +3,27 @@ import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import { sqlConfig } from "../config/sqlConfig";
 import { v4 } from "uuid";
-import { request, Request, response, Response } from "express";
-import { validateLoginUser, validateRegisterUser, validateUserId } from "../validators/userValidator";
+import { Request, response, Response } from "express";
+import {
+  validateLoginUser,
+  validateRegisterUser,
+  validateUserId,
+} from "../validators/userValidator";
 import Connection from "../services/dbConnect";
-import { user } from "../types/interface";
+import { ExtendedUser } from "../middleware/verifyToken";
 
-const dbhelpers = new Connection
-
+const dbhelpers = new Connection();
 
 export const registerUser = async (req: Request, res: Response) => {
   try {
     let { username, email, password } = req.body;
-    let _id=v4()
+    let _id = v4();
     let { error } = validateRegisterUser.validate(req.body);
 
     if (error) {
-      return res.status(404).json({ 
+      return res.status(404).json({
         message: "Either username, email or password may be incorrect ",
-        error: error.details 
+        error: error.details,
       });
     }
 
@@ -41,7 +44,6 @@ export const registerUser = async (req: Request, res: Response) => {
     return res.status(200).json({
       message: "User Registered Successfully!",
     });
-    
   } catch (error) {
     console.log(error);
     return res.json({
@@ -64,10 +66,9 @@ export const loginUser = async (req: Request, res: Response) => {
 
     const pool = await mssql.connect(sqlConfig);
 
-    const user = (await pool
-      .request()
-      .input("email", email)
-      .execute("loginUser")).recordset;
+    const user = (
+      await pool.request().input("email", email).execute("loginUser")
+    ).recordset;
 
     if (user.length === 0) {
       return res.status(404).json({
@@ -86,7 +87,7 @@ export const loginUser = async (req: Request, res: Response) => {
     const { password: _, ...userInfo } = user[0];
 
     const token = jwt.sign(userInfo, process.env.SECRET as string, {
-      expiresIn: '48hr',
+      expiresIn: "48hr",
     });
 
     return res.status(200).json({
@@ -96,35 +97,50 @@ export const loginUser = async (req: Request, res: Response) => {
   } catch (error) {
     console.log(error);
     return res.status(500).json({
+      error: "Internal server error",
+    });
+  }
+};
+
+export const checkUserDetails = async (request: ExtendedUser , res: Response) => {
+  try {
+    const userInfo = request.info;
+console.log(userInfo);
+
+    if (userInfo) {
+      console.log(userInfo);
+
+      return res.json({
+        info: userInfo,
+      });
+    } else {
+      return res.status(404).json({
+        error: "User details not found",
+      });
+    }
+  } catch (error) {
+    console.error('Error checking user details:', error);
+    return res.status(500).json({
       error: 'Internal server error',
     });
   }
 };
 
-export const checkUserDetails = async (request: any, res: Response) => {
-  if(request.info) {
-    console.log(request.info)
 
-    return response.json({
-      info: request.info
-    })
+export const deleteUser = async (req: Request, res: Response) => {
+  try {
+    const { _id } = req.params;
+
+    console.log(_id);
+
+    const deleteUser = await dbhelpers.execute("deleteUser", { _id });
+
+    return res.json({
+      message: "User deleted successfully",
+    });
+  } catch (error) {
+    return res.json({
+      error: error,
+    });
   }
 };
-
-export const deleteUser=async(req:Request,res:Response)=>{
-  try{
-      const {_id}=req.params
-
-      console.log(_id);
-      
-      const deleteUser=await dbhelpers.execute('deleteUser',{_id})
-
-      return res.json({
-          message:'User deleted successfully'
-      })
-  }catch(error){
-      return res.json({
-          error:error
-      })
-  }
-}

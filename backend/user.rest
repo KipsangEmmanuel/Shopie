@@ -6,3 +6,17 @@ Content-Type: application/json
     "email":"bonge@gmail.com",
     "password": "@Bonge123"
 }
+
+###
+POST  http://localhost:8000/user/login
+Content-Type: application/json
+
+{
+
+    "email":"gilbert@gmail.com",
+    "password": "@Gilbert123"
+}
+
+### checking user details
+GET http://localhost:8000/user/check_user_details
+token : "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ZGZhMDgyMC1lN2QzLTQzY2UtOTRlYS0yZWY2MWJjMTQzMmQiLCJlbWFpbCI6ImNsYXJlQGdtYWlsLmNvbSIsInVzZXJuYW1lIjoiQ2xhcmUgV2FuZ2FyaSIsInJvbGUiOiJjdXN0b21lciIsImlhdCI6MTcwMTE1MTM2NiwiZXhwIjoxNzAxMzI0MTY2fQ.pDVEEKF-ysnF21kcIolglemoiqf38UegGe1FjWH099g"
