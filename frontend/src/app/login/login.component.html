@@ -6,8 +6,10 @@
     <form data-cy="login-form" (ngSubmit)="onSubmit()" #loginform="ngForm">
       <h2>Login</h2>
       <div class="input-field">
+        
         <input data-cy="email" type="text" [(ngModel)]="userData.email" name="email" required>
-        <label>Enter your email</label>
+        <label>Enter your email</label><br>
+        
       </div>
       <div class="input-field">
         <input data-cy="password" type="password" [(ngModel)]="userData.password" name="password" required>
