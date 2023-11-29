@@ -17,6 +17,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { ProductSharedService } from './services/product-shared.service';
+import { CartService } from './services/cart.service';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { ProductSharedService } from './services/product-shared.service';
     FooterComponent,
     CartComponent,
     AboutComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    
   ],
   imports: [
     BrowserModule,
@@ -42,7 +44,8 @@ import { ProductSharedService } from './services/product-shared.service';
     RouterModule
 
   ],
-  providers: [ProductSharedService],
-  bootstrap: [AppComponent]
+  providers: [ProductSharedService, CartService],
+  bootstrap: [AppComponent],
+  
 })
 export class AppModule { }

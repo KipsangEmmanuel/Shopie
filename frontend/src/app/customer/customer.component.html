@@ -6,7 +6,7 @@
       <h1 class="mb-4">
         <i>Good <span>Drinks</span> For Good <span>Moments</span></i>
       </h1>
-      <button class="cart" (click)="goToCart()">
+      <button class="cart" >
         Cart
       </button>
     </div>
@@ -22,14 +22,26 @@
           <div class="title">{{ product.product_name }}</div>
           <div class="sub-title">Price: ${{ product.price }}</div>
           <p>{{ product.description }}</p>
-          <button class="add-cart">Add to cart</button>          
+          <button class="add-cart"  (click)="addToCart(product)">Add to cart</button>          
         </div>
       </div>
     </section>
   
   </section>
+  <section class="my-cart">
+    <div *ngFor="let product of cart" class="cart-item">
+      <div class="img">
+        <img [src]="product.image" alt="Product Image">
+      </div>
+      <div class="content">
+        <div class="title">{{ product.product_name }}</div>
+        <div class="sub-title">Price: ${{ product.price }}</div>
+        <!-- Add any other information you want to display in the cart -->
+      </div>
+    </div>
+  </section>
+  
 
-  
-  
+
   <app-footer></app-footer>
 </body>
