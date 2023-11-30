@@ -91,3 +91,38 @@ export const deleteProduct = async(req:Request, res:Response)=>{
         })
     }
 }
+
+
+export const UpdateProductControllers = async (req: Request, res: Response) => {
+    try {
+      const {product_name, description, price, image } = req.body;
+      const {productID} =req.params
+      if (! productID) {
+        return res
+          .status(400)
+          .json({ error: "product not found" });
+      }
+      const pool = await mssql.connect(sqlConfig);
+  
+      const updatedProduct = await pool.request().input("productID",
+      mssql.VarChar(100),productID).input("product_name",mssql.VarChar(200),product_name).input("description", mssql.VarChar(800), description).input("price",
+      mssql.Int,price).input("image", mssql.VarChar(500),image).execute("updateProduct");
+  
+  
+      if (updatedProduct.returnValue === 0) {
+        return res.status(200).json({
+          success: true,
+          message: "Product updated successfully",
+        });
+      } else {
+        return res.status(500).json({
+          success: false,
+          message: "Failed to update product",
+        });
+      }
+    } catch (error) {
+      return res.json({
+        error: error,
+      });
+    }
+  };

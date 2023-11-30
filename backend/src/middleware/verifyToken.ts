@@ -17,7 +17,7 @@ export const verifyToken = (
 ) => {
     try {
         const token = request.headers["token"] as string;
-        console.log(token);
+        // console.log(token);
         
         if (!token) {
           return res.status(401).json({

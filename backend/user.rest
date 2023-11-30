@@ -13,10 +13,10 @@ Content-Type: application/json
 
 {
 
-    "email":"gilbert@gmail.com",
-    "password": "@Gilbert123"
+    "email":"brian@gmail.com",
+    "password": "@Brian123"
 }
 
 ### checking user details
 GET http://localhost:8000/user/check_user_details
-token : "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ZGZhMDgyMC1lN2QzLTQzY2UtOTRlYS0yZWY2MWJjMTQzMmQiLCJlbWFpbCI6ImNsYXJlQGdtYWlsLmNvbSIsInVzZXJuYW1lIjoiQ2xhcmUgV2FuZ2FyaSIsInJvbGUiOiJjdXN0b21lciIsImlhdCI6MTcwMTE1MTM2NiwiZXhwIjoxNzAxMzI0MTY2fQ.pDVEEKF-ysnF21kcIolglemoiqf38UegGe1FjWH099g"
+token : "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiIyNWE4YmRhOC0yMTIzLTQzNzktOTUwOC1mZjQ5N2NmYmQwYjYiLCJlbWFpbCI6ImJyaWFuQGdtYWlsLmNvbSIsInVzZXJuYW1lIjoiQnJpYW4gV2F3ZXJ1Iiwicm9sZSI6ImN1c3RvbWVyIiwiaWF0IjoxNzAxMjk0MDIwLCJleHAiOjE3MDE0NjY4MjB9.Tr4_7yrIaX_w6aAa8zZPvOWz3f5rNmFlP4PG5_QVvO8"

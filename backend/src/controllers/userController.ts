@@ -7,7 +7,6 @@ import { Request, response, Response } from "express";
 import {
   validateLoginUser,
   validateRegisterUser,
-  validateUserId,
 } from "../validators/userValidator";
 import Connection from "../services/dbConnect";
 import { ExtendedUser } from "../middleware/verifyToken";
@@ -102,10 +101,13 @@ export const loginUser = async (req: Request, res: Response) => {
   }
 };
 
-export const checkUserDetails = async (request: ExtendedUser , res: Response) => {
+export const checkUserDetails = async (
+  request: ExtendedUser,
+  res: Response
+) => {
   try {
     const userInfo = request.info;
-console.log(userInfo);
+    console.log(userInfo);
 
     if (userInfo) {
       console.log(userInfo);
@@ -119,13 +121,12 @@ console.log(userInfo);
       });
     }
   } catch (error) {
-    console.error('Error checking user details:', error);
+    console.error("Error checking user details:", error);
     return res.status(500).json({
-      error: 'Internal server error',
+      error: "Internal server error",
     });
   }
 };
-
 
 export const deleteUser = async (req: Request, res: Response) => {
   try {
@@ -144,3 +145,5 @@ export const deleteUser = async (req: Request, res: Response) => {
     });
   }
 };
+
+
