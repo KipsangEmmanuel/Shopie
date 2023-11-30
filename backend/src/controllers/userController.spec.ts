@@ -17,9 +17,9 @@ describe("User Registration", () => {
     it("successfully registeres a user", async() => {
         const req = {
             body: {
-                username: "Test Test",
-                email: "test@gmail.com",
-                password: "@Hashedpass123"
+                username: "caleb",
+                email: "caleb@gmail.com",
+                password: "@Qwerty123"
                 
             }
 
@@ -47,8 +47,8 @@ describe("User Registration", () => {
         expect(res.json).toHaveBeenCalledWith({message: 'User Registered Successfully!'})
         expect(res.status).toHaveBeenCalledWith(200)
         expect(mockedInput).toHaveBeenCalledWith('password', mssql.VarChar, '@Hashedpass123')
-        expect(mockedInput).toHaveBeenCalledWith('username', mssql.VarChar, 'Test Test')
-        expect(mockedInput).toHaveBeenCalledWith('email', mssql.VarChar, 'test@gmail.com')
+        expect(mockedInput).toHaveBeenCalledWith('username', mssql.VarChar, 'caleb')
+        expect(mockedInput).toHaveBeenCalledWith('email', mssql.VarChar, 'caleb@gmail.com')
     })
 })
 
@@ -64,16 +64,16 @@ describe("Testing Login Functionality", () => {
     })
 
 
-    it('Returns an error if email or password is empty', async () => {
+    it('Returns an error if email or password is not found', async () => {
         const req = {
-            body: {
-                email: '',
-                password: ''
-            }
-        }
+          body: {
+            email: "caleb@gmail.com",
+            password: "@Qwerty123",
+          },
+        };
 
         await loginUser(req as Request, res)
 
-        expect(res.json).toHaveBeenCalledWith( {"error": "\"email\" is not allowed to be empty"})
+        expect(res.json).toHaveBeenCalledWith( {"error": "User not found"})
     })
 })

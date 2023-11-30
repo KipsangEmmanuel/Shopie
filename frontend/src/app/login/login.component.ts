@@ -31,18 +31,18 @@ export class LoginComponent {
     };
 
     console.log(userData);
-    
+
 
     try {
       let response = await this.service.login(userData);
       console.log(response.message);
-      
+
       if (response.error) {
         console.log(response.error);
-        
+
         this.loggingIn = false;
-        
-            
+
+
         let  newMess=this.errorMessage = response.error;
         console.log(newMess);
 
@@ -55,7 +55,7 @@ export class LoginComponent {
         this.loggedInState = true;
        let succ= this.successMessage = response.message;
       //  console.log(succ);
-       
+
         this.loggedIn = true;
 
         localStorage.setItem('loggedIn', `${this.loggedIn}`);
@@ -69,7 +69,7 @@ export class LoginComponent {
           this.loggedInState = false;
           this.loggedIn = true;
 
-          if (role == 'admin') {
+          if (role == 'admin') {''
             this.router.navigate(['admin']);
           } else if (role == 'customer') {
             this.router.navigate(['customer']);
