@@ -10,7 +10,7 @@ CREATE TABLE users (
 
 select * from users
 
-update users set role = 'admin' where email = 'emmqnuelkipsqng@gmail.com'
+update users set role = 'admin' where email = 'emmanuel@gmail.com'
 
 
 
