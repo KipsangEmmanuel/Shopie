@@ -96,16 +96,16 @@ export const deleteProduct = async(req:Request, res:Response)=>{
 export const UpdateProductControllers = async (req: Request, res: Response) => {
     try {
       const {product_name, description, price, image } = req.body;
-      const {productID} =req.params
-      if (! productID) {
+      const {product_id} =req.params
+      if (! product_id) {
         return res
           .status(400)
           .json({ error: "product not found" });
       }
       const pool = await mssql.connect(sqlConfig);
   
-      const updatedProduct = await pool.request().input("productID",
-      mssql.VarChar(100),productID).input("product_name",mssql.VarChar(200),product_name).input("description", mssql.VarChar(800), description).input("price",
+      const updatedProduct = await pool.request().input("product_id",
+      mssql.VarChar(100),product_id).input("product_name",mssql.VarChar(200),product_name).input("description", mssql.VarChar(800), description).input("price",
       mssql.Int,price).input("image", mssql.VarChar(500),image).execute("updateProduct");
   
   

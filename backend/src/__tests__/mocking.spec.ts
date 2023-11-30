@@ -12,6 +12,6 @@ describe("This mocks the uuid", () => {
 
         mockedv4.mockImplementation(() => 'uniqueid_gygfsf_navsv')
 
-        console.log(v4())
+        // console.log(v4())
     })
 })

@@ -17,6 +17,19 @@ Content-Type: application/json
     "password": "@Brian123"
 }
 
+###
+get http://localhost:8000/product/all
+Content-Type: application/json
+
+{
+    "product_name": "JD",
+    "description":"Farmented Whiskey",
+    "price": "7673",
+    "image": "https://molloys.ie/cdn/shop/products/jack-daniels-70cl-buy-online_461x.png?v=1614789125"
+}
+
+
+
 ### checking user details
 GET http://localhost:8000/user/check_user_details
 token : "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiIyNWE4YmRhOC0yMTIzLTQzNzktOTUwOC1mZjQ5N2NmYmQwYjYiLCJlbWFpbCI6ImJyaWFuQGdtYWlsLmNvbSIsInVzZXJuYW1lIjoiQnJpYW4gV2F3ZXJ1Iiwicm9sZSI6ImN1c3RvbWVyIiwiaWF0IjoxNzAxMjk0MDIwLCJleHAiOjE3MDE0NjY4MjB9.Tr4_7yrIaX_w6aAa8zZPvOWz3f5rNmFlP4PG5_QVvO8"
