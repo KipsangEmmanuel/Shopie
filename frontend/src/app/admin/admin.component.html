@@ -15,9 +15,18 @@
       </button>
     </div>
   </section>
-
+  <div class="flex text-gray-900 ems-center space-x-4">
+    <input   [(ngModel)]="filter"
+      type="text"
+       placeholder="Search..."
+       class="px-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:border-blue-500"
+     />
+    <button class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600">
+      Search
+    </button>
+  </div>
   <section *ngIf="productList.length > 0" class="product-cards">
-    <div *ngFor="let product of productList" class="product-card">
+    <div *ngFor="let product of productList | searchFilter: filter " class="product-card">
       <div class="img">
         <img [src]="product.image" alt="Product Image" />
       </div>
@@ -27,9 +36,9 @@
         <p>{{ product.description }}</p>
         <div class="actions">
           <button class="btn-d" (click)="deleteProduct(product.product_id)">Delete</button>
-          <button class="btn-u">Update</button>
+          <button type="button" (click)="hiden=!hiden" (click)="updateProduct(product.product_id)" class="btn-u">Update</button>
         </div>
-
+ 
       </div>
     </div>
   </section>
@@ -86,5 +95,55 @@
     </div>
   </div>
 
+  <div class="crud-popup" *ngIf="!hiden" >
+    <div class="crud-container">
+      <label for="togglePopup" (click)="hiden = !hiden" class="close"
+        >&times;</label
+      >
+      <form
+        [formGroup]="productForm"
+        (ngSubmit)="createProduct()"
+        id="productForm"
+      >
+        <label for="productName">Product Name:</label>
+        <input
+          type="text"
+          formControlName="product_name"
+          name="productName"
+          placeholder="Product Name"
+          required
+        />
+
+        <label for="productDescription">Product Description:</label>
+        <textarea
+          formControlName="description"
+          name="productDescription"
+          placeholder="Product Description"
+          rows="4"
+          required
+        ></textarea>
+
+        <label for="productPrice">Product Price:</label>
+        <input
+          type="number"
+          formControlName="price"
+          name="productPrice"
+          placeholder="Product price"
+          required
+        />
+
+        <label for="productImage">Product Image:</label>
+        <input
+          type="text"
+          formControlName="image"
+          name="productImage"
+          placeholder="Product Image"
+          required
+        />
+
+        <button type="submit" class="sub">Update Product</button>
+      </form>
+    </div>
+  </div>
   <app-footer></app-footer>
 </body>

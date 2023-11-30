@@ -1,19 +1,27 @@
 <body>
   <section class="ctm">
     <app-navbar></app-navbar>
-
+    
     <div class="text-box">
       <h1 class="mb-4">
         <i>Good <span>Drinks</span> For Good <span>Moments</span></i>
       </h1>
-      <button class="cart" >
-        Cart
-      </button>
+      <h2>Our Products..</h2>
     </div>
   </section>
+  <div class="flex text-gray-900 ems-center space-x-4">
+    <input   [(ngModel)]="filter"
+      type="text"
+       placeholder="Search..."
+       class="px-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:border-blue-500"
+     />
+    <button class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600">
+      Search
+    </button>
+  </div>
   <section class="customer-products">
     <section *ngIf="productList.length > 0" class="product-cards">
-      <div *ngFor="let product of productList" class="product-card">
+      <div *ngFor="let product of productList | searchFilter: filter" class="product-card">
         <div class="img">
             <img [src]="product.image" alt="Product Image">    
           
@@ -42,6 +50,5 @@
       </div>
     </div>
   </section>
-  
   <app-footer></app-footer>
 </body>

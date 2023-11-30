@@ -11,7 +11,7 @@ import { ProductService } from '../services/product.service';
 export class CustomerComponent {
   productList: any[] = [];
   cart: any[] = [];
-
+filter=''
   constructor(
     private productService: ProductService,
     private productSharedService: ProductSharedService,
@@ -40,7 +40,6 @@ export class CustomerComponent {
         this.productSharedService.updateProductList([...this.productList]);
 
         localStorage.setItem('cart', JSON.stringify(this.cart));
-
 
   }
 

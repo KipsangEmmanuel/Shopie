@@ -11,8 +11,12 @@ import { ProductService } from '../services/product.service';
 })
 export class AdminComponent {
   productForm: FormGroup;
+  UpdateproductForm!: FormGroup;
   productList: Product[] = [];
   hide = true;
+  hiden=true
+  filter= ''
+  product_id!: Product
   // product!: Product
   isUpdateMode: boolean = false;
   selectedProductId: number | null = null;
@@ -28,7 +32,28 @@ export class AdminComponent {
       price: ['', [Validators.required, Validators.min(0)]],
       image: ['', Validators.required],
     });
+
+    this.UpdateproductForm=this.fb.group({
+      product_name: ['', Validators.required],
+      description: ['', Validators.required],
+      price: ['', [Validators.required, Validators.min(0)]],
+      image: ['', Validators.required],
+    })
   }
+
+  ngOnInit() {
+    this.getAllProducts()
+  
+}
+
+
+
+updateProduct(product_id:string){
+  console.log(product_id);
+  
+  let updatedProduct=this.UpdateproductForm.value
+}
+
   clicked() {
     console.log('clicked');
 
@@ -66,6 +91,7 @@ export class AdminComponent {
           console.log('Product deleted successfully');
           this.productService.removeProductFromLocalList(product_id);
           this.productSharedService.updateProductList(this.productList);
+          this.getAllProducts()
         },
         (error) => {
           console.error('Error deleting product', error);
@@ -74,18 +100,14 @@ export class AdminComponent {
     }
   }
 
-  ngOnInit() {
-    // this.productService.productList$.subscribe((products) => {
-    //   this.productList = products;
-    //   // console.log(products);
-      
-    // });
 
-    this.productService.getAllProducts().then((res) => {
-      console.log(res)
-      
-     const products = res.products
-      this.productList=products;
-    })
-  }
+
+getAllProducts(){
+  this.productService.getAllProducts().then((res) => {
+    console.log(res)
+   const products = res.products
+    this.productList=products;
+  })
 }
+}
+

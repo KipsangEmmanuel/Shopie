@@ -18,6 +18,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { ProductSharedService } from './services/product-shared.service';
 import { CartService } from './services/cart.service';
+import { SearchFilterPipe } from './pipes/search-filter.pipe';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { CartService } from './services/cart.service';
     CartComponent,
     AboutComponent,
     NotFoundComponent,
+    SearchFilterPipe,
     
   ],
   imports: [
